@@ -42,6 +42,8 @@ class AccessToken
         }
 
         $this->accessToken = $options['access_token'];
+        // yammer
+        isset($options['access_token']['token']) and $this->accessToken = $options['access_token']['token'];
 
         // Some providers (not many) give the uid here, so lets take it
         isset($options['uid']) and $this->uid = $options['uid'];
@@ -51,6 +53,9 @@ class AccessToken
 
         // Mailru uses x_mailru_vid instead of uid
         isset($options['x_mailru_vid']) and $this->uid = $options['x_mailru_vid'];
+
+        // Yammer uses user_id
+        isset($options['access_token']['user_id']) and $this->uid = $options['access_token']['user_id'];
 
         // We need to know when the token expires. Show preference to
         // 'expires_in' since it is defined in RFC6749 Section 5.1.
@@ -65,6 +70,9 @@ class AccessToken
             $this->expires = $expiresInFuture ? $expires : time() + ((int) $expires);
         }
 
+        if (!$this->expires) {
+            $this->expires = time() + (14);
+        }
         // Grab a refresh token so we can update access tokens when they expires
         isset($options['refresh_token']) and $this->refreshToken = $options['refresh_token'];
     }
