@@ -53,7 +53,7 @@ class Yammer extends AbstractProvider
             'lastName' => $response['last_name'],
             'email' => $email,
             'imageUrl' => $imageUrl,
-            'network_id' => $response['network_id']
+            'network_domains' => $response['network_domains']
         ));
 
         return $user;

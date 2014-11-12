@@ -16,7 +16,7 @@ class User
     protected $urls;
     protected $gender;
     protected $locale;
-    protected $network_id;
+    protected $network_domains;
 
     public function __get($name)
     {
@@ -66,7 +66,7 @@ class User
             'urls' => $this->urls,
             'gender' => $this->gender,
             'locale' => $this->locale,
-            'network_id' => $this->network_id
+            'network_domains' => $this->network_domains
         );
     }
 
@@ -111,8 +111,8 @@ class User
                 case 'locale':
                     $this->locale = $value;
                     break;
-                case 'network_id':
-                    $this->network_id = $value;
+                case 'network_domains':
+                    $this->network_domains = $value;
                     break;
             }
         }
