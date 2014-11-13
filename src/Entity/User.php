@@ -17,6 +17,8 @@ class User
     protected $gender;
     protected $locale;
     protected $network_domains;
+    protected $expertise;
+    protected $interests;
 
     public function __get($name)
     {
@@ -66,7 +68,9 @@ class User
             'urls' => $this->urls,
             'gender' => $this->gender,
             'locale' => $this->locale,
-            'network_domains' => $this->network_domains
+            'network_domains' => $this->network_domains,
+            'expertise' => $this->expertise,
+            'interests' => $this->interests
         );
     }
 
@@ -113,6 +117,12 @@ class User
                     break;
                 case 'network_domains':
                     $this->network_domains = $value;
+                    break;
+                case 'expertise':
+                    $this->expertise = $value;
+                    break;
+                case 'interests':
+                    $this->interests = $value;
                     break;
             }
         }

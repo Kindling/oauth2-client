@@ -36,8 +36,6 @@ class Yammer extends AbstractProvider
 
         $user = new User;
 
-        $imageUrl = (isset($response['picture'])) ? $response['picture'] : null;
-
         $emailAddressesArray = $response['contact']->email_addresses;
         $email = '';
         foreach($emailAddressesArray as $emailObject) {
@@ -52,8 +50,10 @@ class Yammer extends AbstractProvider
             'firstname' => $response['first_name'],
             'lastName' => $response['last_name'],
             'email' => $email,
-            'imageUrl' => $imageUrl,
-            'network_domains' => $response['network_domains']
+            'imageUrl' => $response['mugshot_url_template'],
+            'network_domains' => $response['network_domains'],
+            'expertise' => $response['expertise'],
+            'interests' => $response['interests']
         ));
 
         return $user;
